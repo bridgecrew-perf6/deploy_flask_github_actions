@@ -3,7 +3,8 @@
 
 FROM tiangolo/uwsgi-nginx-flask
 
-ADD . /app
-WORKDIR /app
+RUN mkdir -p /server_app/
+ADD . /server_app/
+WORKDIR /server_app/
 
 ENTRYPOINT ["python", "run_app.py"]
