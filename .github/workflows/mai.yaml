@@ -1,4 +1,4 @@
-name: Deploy
+name: CICD-Deploy_on_Heroku
 
 on:
   push:
@@ -7,8 +7,24 @@ on:
       - main
 
 jobs:
-  build:
+  myCI:
     runs-on: ubuntu-latest
+    container: docker://dvcorg/cml-py3:latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: cml_run
+      env:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # Your ML workflow goes here
+        pip install -r requirements.txt
+        echo "## HELLO"
+        
+
+
+  my_CD:
+    runs-on: ubuntu-latest
+    needs: [myCI]
     steps:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
