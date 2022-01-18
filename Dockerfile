@@ -3,8 +3,11 @@
 
 FROM ubuntu
 
-
-RUN mkdir -p /home/server_app/
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
+    
+RUN mkdir -p /server_app/
 ADD . /server_app/
 WORKDIR /server_app/
 RUN pip install -r requirements.txt
