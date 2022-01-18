@@ -15,7 +15,7 @@ ADD . /server_app/
 WORKDIR /server_app/
 RUN pip3 install -r requirements.txt
 
-ENTRYPOINT ["python", "run_app.py"]
+ENTRYPOINT ["python3", "run_app.py"]
 
 
 
